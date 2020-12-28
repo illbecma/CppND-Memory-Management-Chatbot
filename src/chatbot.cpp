@@ -44,7 +44,53 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-
+// Copy constructor
+ChatBot::ChatBot(const ChatBot& source) {
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+}
+// Copy Assignment Operator
+ChatBot& ChatBot::operator=(const ChatBot& source) {
+    std::cout << "ChatBot Copy Assignment" << std::endl;
+    if (this == &source)
+        return *this;
+    
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    return *this;
+}
+// Move Constructor
+ChatBot::ChatBot(ChatBot&& source) {
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    
+    // invalidate data handles
+    source._image = nullptr;
+}
+// Move Assignment Operator
+ChatBot& ChatBot::operator=(ChatBot&& source) {
+    std::cout << "ChatBot Move Operator" << std::endl;
+    if (this==&source) {
+        return *this;
+    }
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    
+    // invalidate data handles
+    source._image = nullptr;
+    
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 
