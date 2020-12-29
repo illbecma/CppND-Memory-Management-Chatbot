@@ -16,6 +16,15 @@ debug: clean
 	cmake -DCMAKE_BUILD_TYPE=debug .. && \
 	make
 
+.PHONY: valgrind
+valgrind: debug
+	cd build && \
+	valgrind --leak-check=full \
+	--show-leak-kinds=all \
+	--track-origins=yes \
+	--log-file=../valgrind-out.txt \
+	./membot
+
 .PHONY: clean
 clean:
 	rm -rf build
